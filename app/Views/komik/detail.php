@@ -18,8 +18,12 @@
                             <p class="card-text"><b>Penerbit : </b> <?= $komik['penerbit'] ?></p>
                             <p class="card-text"><small class="text-muted">Upload at <?= $komik['created_at'] ?></small></p>
 
-                            <a href="" class="btn btn-warning">Edit</a>
-                            <a href="" class="btn btn-danger">Delete</a>
+                            <a href="/komik/edit/<?= $komik['slug']; ?>" class="btn btn-warning">Edit</a>
+                            <form action="/komik/<?= $komik['id']; ?>" method="post" class="d-inline">
+                                <?= csrf_field(); ?>
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('apakah anda yakin?')">Delete</button>
+                            </form>
                             <br></br>
                             <a href="/komik" class="btn btn-info">Back</a>
                         </div>
