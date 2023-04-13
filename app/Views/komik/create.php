@@ -7,7 +7,7 @@
         <div class="col-8">
             <h2 class="my-3">Form Menambahkan data</h2>
 
-            <form action="/komik/save" method="post">
+            <form action="/komik/save" method="post" enctype="multipart/form-data">
                 <?= csrf_field(); ?>
                 <div class="form-group row">
                     <label for="judul" class="col-sm-2 col-form-label">Judul</label>
@@ -32,8 +32,17 @@
                 </div>
                 <div class="form-group row">
                     <label for="sampul" class="col-sm-2 col-form-label">Sampul</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="sampul" name="sampul" value="<?= old('sampul'); ?>">
+                    <div class="col-sm-2">
+                        <img src="/img/defaultImg.jpg" class="img-thumbnail img-preview">
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input <?= (validation_show_error('sampul')) ? 'is-invalid' : ''; ?>" id="sampul" name="sampul" onchange="previewImg()">
+                            <div class="invalid-feedback">
+                                <?= validation_show_error('sampul'); ?>
+                            </div>
+                            <label class="custom-file-label" for="customFile">Pilih Gambar...</label>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group row">
